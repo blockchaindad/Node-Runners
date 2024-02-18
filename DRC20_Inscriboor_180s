@@ -1,0 +1,27 @@
+import subprocess
+import time
+
+def run_command(command):
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    print("Output from command:")
+    print(result.stdout)
+
+    if result.stderr:
+        print("Error in command:")
+        print(result.stderr)
+
+    return result
+
+def main():
+    while True:
+        # Construct the command
+        mint_command = "node . drc-20 mint <address> <ticker> <amount>"
+        
+        # Run the command
+        result_mint = run_command(mint_command)
+        
+        # Wait for 180 seconds
+        time.sleep(180)
+
+if __name__ == "__main__":
+    main()
